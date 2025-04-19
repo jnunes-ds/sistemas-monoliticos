@@ -1,0 +1,24 @@
+{
+  "jsc": {
+    "parser": {
+      "syntax": "typescript",
+      "tsx": false,
+      "decorators": true,
+      "dynamicImport": false,
+      "baseUrl": "./src", // Define o diretório base para os aliases
+      "paths": {
+        "@domain/*": ["./src/domain"],
+        "@infra/*": ["./src/infrastructure"], // Define o alias @ para o diretório src
+        "@usecase/*": ["./src/usecase"]
+      }
+    },
+    "target": "es2020"
+  },
+  "module": {
+    "type": "commonjs"
+  },
+  "exclude": [
+    "src/**/*.spec.ts",
+    "src/**/*.test.ts"
+  ]
+}
