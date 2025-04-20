@@ -8,23 +8,23 @@ import {DATE, NUMBER, STRING, UUIDV4} from "sequelize";
 export class ProductModel extends Model {
   @PrimaryKey
   @Column({allowNull: false, type: STRING})
-  id!: string;
+  declare id: string;
 
   @Column({allowNull: false, type: STRING})
-  name!: string;
+  declare name: string;
 
   @Column({allowNull: false, type: STRING})
-  description!: string;
+  declare description: string;
 
   @Column({allowNull: false, type: NUMBER})
-  purchasePrice!: number;
+  declare purchasePrice: number;
 
   @Column({allowNull: false, type: NUMBER})
-  stock!: number;
+  declare stock: number;
 
   @Column({allowNull: false, type: DATE})
-  createdAt!: Date;
+  declare createdAt: Date;
 
   @Column({allowNull: false, type: DATE})
-  updatedAt!: Date;
+  declare updatedAt: Date;
 }
