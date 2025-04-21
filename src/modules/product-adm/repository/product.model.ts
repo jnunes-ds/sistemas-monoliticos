@@ -7,24 +7,24 @@ import {DATE, NUMBER, STRING, UUIDV4} from "sequelize";
 })
 export class ProductModel extends Model {
   @PrimaryKey
-  @Column({allowNull: false, type: STRING})
+  @Column({type: STRING, allowNull: false})
   declare id: string;
 
-  @Column({allowNull: false, type: STRING})
+  @Column({type: STRING, allowNull: false})
   declare name: string;
 
-  @Column({allowNull: false, type: STRING})
+  @Column({type: STRING, allowNull: false})
   declare description: string;
 
-  @Column({allowNull: false, type: NUMBER})
+  @Column({type: NUMBER, allowNull: false})
   declare purchasePrice: number;
 
-  @Column({allowNull: false, type: NUMBER})
+  @Column({type: NUMBER, allowNull: false})
   declare stock: number;
 
-  @Column({allowNull: false, type: DATE})
+  @Column({type: DATE, allowNull: false})
   declare createdAt: Date;
 
-  @Column({allowNull: false, type: DATE})
+  @Column({type: DATE, allowNull: false})
   declare updatedAt: Date;
 }
