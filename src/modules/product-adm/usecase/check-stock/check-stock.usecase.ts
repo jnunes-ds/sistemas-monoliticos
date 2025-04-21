@@ -2,7 +2,6 @@ import UseCaseInterface from "../../../@shared/usecase/use-case.interface";
 import {Promise} from "ts-toolbelt/out/Any/Promise";
 import ProductGateway from "../../gateway/product.gateway";
 import {InputCheckStockDTO, OutputCheckStockDTO} from "./check-stock.dto";
-import Id from "../../../@shared/domain/value-object/id.value-object";
 
 export default class CheckStockUsecase implements UseCaseInterface {
 
@@ -13,9 +12,9 @@ export default class CheckStockUsecase implements UseCaseInterface {
   }
 
   async execute(input: InputCheckStockDTO): Promise<OutputCheckStockDTO> {
-    const product = await this._productRepository.find(new Id(input.productId));
+    const product = await this._productRepository.find(input.productId);
     return {
-      productId: product.id.id,
+      productId: product.id,
       stock: product.stock,
     }
   }

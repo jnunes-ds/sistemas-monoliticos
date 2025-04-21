@@ -20,12 +20,12 @@ describe("Check Stock UseCase - Unit Test", () => {
     const productRepository = MockRepository();
     const checkStockUseCase = new CheckStockUsecase(productRepository);
 
-    const input = {productId: product.id.id};
+    const input = {productId: product.id};
 
     const result =  await checkStockUseCase.execute(input);
 
     expect(productRepository.find).toHaveBeenCalled();
-    expect(result.productId).toEqual(product.id.id);
+    expect(result.productId).toEqual(product.id);
     expect(result.stock).toEqual(product.stock);
   });
 });

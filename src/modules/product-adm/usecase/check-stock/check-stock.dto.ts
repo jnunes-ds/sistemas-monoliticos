@@ -1,10 +1,10 @@
 import Id from "../../../@shared/domain/value-object/id.value-object";
 
 export interface InputCheckStockDTO {
-  productId: string;
+  productId: Id;
 }
 
 export interface OutputCheckStockDTO {
-  productId: string;
+  productId: Id;
   stock: number;
 }

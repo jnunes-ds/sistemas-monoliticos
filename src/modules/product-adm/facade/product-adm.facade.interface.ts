@@ -1,5 +1,7 @@
+import Id from "../../@shared/domain/value-object/id.value-object";
+
 export interface InputAddProductFacadeDto {
-  id?: string
+  id?: Id;
   name: string
   description: string
   purchasePrice: number
@@ -7,11 +9,11 @@ export interface InputAddProductFacadeDto {
 }
 
 export interface InputCheckStockFacadeDto {
-  productId: string
+  productId: Id
 }
 
 export interface OutputCheckStockFacadeDto {
-  productId: string;
+  productId: Id;
   stock: number;
 }
 
