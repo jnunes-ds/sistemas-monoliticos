@@ -5,8 +5,10 @@ import ProcessPaymentUsecase from "./process-payment.usecase";
 const transaction: Transaction = new Transaction({
   id: new Id("123Abc"),
   orderId: "123",
-  amount: 99.99,
+  amount: 100,
 });
+
+transaction.process();
 
 const mockRepository = () => ({
   save: jest.fn().mockResolvedValue(Promise.resolve(transaction)),
@@ -29,6 +31,6 @@ describe("Process Payment Usecase Unit Test", () => {
     expect(result.transactionId).toBe(transaction.id.id);
     expect(result.orderId).toBe(transaction.orderId);
     expect(result.amount).toBe(transaction.amount);
-    expect(result.status).toBe(transaction.status);
+    expect(result.status).toBe("approved");
   });
 });
