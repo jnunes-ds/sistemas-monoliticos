@@ -1,7 +1,7 @@
 import ClientGateway from "../gateway/client.gateway";
 import Client from "../domain/client.entity";
 import {Promise} from "ts-toolbelt/out/Any/Promise";
-import {ClientModel} from "./client.model";
+import ClientModel from "./client.model";
 import Id from "../../@shared/domain/value-object/id.value-object";
 
 export default class ClientRepository implements ClientGateway {

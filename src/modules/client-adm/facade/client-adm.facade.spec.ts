@@ -1,9 +1,9 @@
 import {Sequelize} from "sequelize-typescript";
 import ClientRepository from "../repository/ClientRepository";
-import {ClientModel} from "../repository/client.model";
 import Client from "../domain/client.entity";
 import Id from "../../@shared/domain/value-object/id.value-object";
 import ClientAdmFacadeFactory from "../factory/facade.factory";
+import ClientModel from "../repository/client.model";
 
 describe("Client-Adm Facade Test", () => {
   let sequelize: Sequelize;

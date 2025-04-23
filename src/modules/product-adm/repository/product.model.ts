@@ -5,7 +5,7 @@ import {DATE, NUMBER, STRING, UUIDV4} from "sequelize";
   tableName: "products",
   timestamps: false,
 })
-export class ProductModel extends Model {
+export default class ProductModel extends Model {
   @PrimaryKey
   @Column({type: STRING, allowNull: false})
   declare id: string;

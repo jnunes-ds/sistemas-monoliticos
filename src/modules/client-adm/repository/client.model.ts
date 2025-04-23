@@ -5,7 +5,7 @@ import {DATE, STRING} from "sequelize";
   tableName: "clients",
   timestamps: false,
 })
-export class ClientModel extends Model {
+export default class ClientModel extends Model {
 
   @PrimaryKey
   @Column({type: STRING, allowNull: false})
