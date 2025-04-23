@@ -6,6 +6,14 @@ import Id from "../../@shared/domain/value-object/id.value-object";
 
 export default class ClientRepository implements ClientGateway {
   async add(clientData: Client): Promise<void> {
+    await ClientModel.create({
+      id: clientData.id.id,
+      name: clientData.name,
+      email: clientData.email,
+      address: clientData.address,
+      createdAt: clientData.createdAt,
+      updatedAt: clientData.updatedAt,
+    });
   }
 
   async find(id: string): Promise<Client> {
