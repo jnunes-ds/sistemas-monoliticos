@@ -34,7 +34,7 @@ describe("Transaction Repository test", () => {
     const repository =  new TransactionRepository();
     const result = await repository.save(transaction);
 
-    expect(result.id.id).toEqual(transaction.id.id);
+    expect(result.id).toStrictEqual(transaction.id);
     expect(result.amount).toEqual(transaction.amount);
     expect(result.orderId).toEqual(transaction.orderId);
     expect(result.status).toEqual(transaction.status);
