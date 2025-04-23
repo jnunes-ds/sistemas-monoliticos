@@ -1,5 +1,5 @@
-import {Column, DataType, Model, PrimaryKey, Table} from "sequelize-typescript";
-import {DATE, NUMBER, STRING, UUIDV4} from "sequelize";
+import {Column, Model, PrimaryKey, Table} from "sequelize-typescript";
+import {DATE, NUMBER, STRING} from "sequelize";
 
 @Table({
   tableName: "products",
