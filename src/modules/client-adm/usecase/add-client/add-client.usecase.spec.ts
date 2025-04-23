@@ -1,0 +1,27 @@
+import AddClientUsecase from "./add-client.usecase";
+
+const mockRepository = () => ({
+  add: jest.fn(),
+  find: jest.fn(),
+});
+
+describe("Add Client Use Case Unit Test", () => {
+  it("Should be able to add a client", async () => {
+    const clientRepository = mockRepository();
+    const addClientUseCase = new AddClientUsecase(clientRepository);
+
+    const input = {
+      name: "John Doe",
+      email: "jhondoe@mail.com",
+      address: "123 Main St",
+    }
+
+    const result = await addClientUseCase.execute(input);
+
+    expect(clientRepository.add).toHaveBeenCalled();
+    expect(result.id).toBeDefined();
+    expect(result.name).toEqual("John Doe");
+    expect(result.email).toEqual("jhondoe@mail.com");
+    expect(result.address).toEqual("123 Main St");
+  })
+});
