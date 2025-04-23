@@ -19,6 +19,7 @@ export default class ProcessPaymentUsecase implements UseCaseInterface {
     if (!persistTransaction) {
       throw new Error("Transaction not found");
     }
+
     return {
       transactionId: persistTransaction.id.id,
       orderId: persistTransaction.orderId,

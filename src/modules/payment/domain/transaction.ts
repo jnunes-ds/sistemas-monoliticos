@@ -32,11 +32,11 @@ export default class Transaction extends BaseEntity implements AggregateRoot {
     }
   }
 
-  approve(): void {
+  private approve(): void {
     this._status = "approved";
   }
 
-  decline(): void {
+  private decline(): void {
     this._status = "declined";
   }
 
