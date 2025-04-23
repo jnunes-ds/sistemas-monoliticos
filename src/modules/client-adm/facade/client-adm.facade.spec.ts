@@ -1,11 +1,9 @@
 import {Sequelize} from "sequelize-typescript";
 import ClientRepository from "../repository/ClientRepository";
-import AddClientUsecase from "../usecase/add-client/add-client.usecase";
 import {ClientModel} from "../repository/client.model";
-import ClientAdmFacade from "./client-adm.facade";
-import FindClientUsecase from "../usecase/find-client/find-client.usecase";
 import Client from "../domain/client.entity";
 import Id from "../../@shared/domain/value-object/id.value-object";
+import ClientAdmFacadeFactory from "../factory/facade.factory";
 
 describe("Client-Adm Facade Test", () => {
   let sequelize: Sequelize;
@@ -26,9 +24,7 @@ describe("Client-Adm Facade Test", () => {
   });
 
   it("should create a client", async () => {
-    const clientRepository = new ClientRepository();
-    const addClientUseCase = new AddClientUsecase(clientRepository);
-    const facade = new ClientAdmFacade({addClientUseCase, findClientUseCase: undefined});
+    const facade = ClientAdmFacadeFactory.create();
 
     const input = {
       id: "123ABC",
@@ -50,8 +46,7 @@ describe("Client-Adm Facade Test", () => {
 
   it("should find a client", async () => {
     const clientRepository = new ClientRepository();
-    const findClientUseCase = new FindClientUsecase(clientRepository);
-    const facade = new ClientAdmFacade({addClientUseCase: undefined, findClientUseCase});
+    const facade = ClientAdmFacadeFactory.create();
 
       await clientRepository.add(new Client({
         id: new Id("123ABC"),
