@@ -25,6 +25,15 @@ export default class ClientAdmFacade implements IClientAdmFacade {
   }
 
   async find(input: InputFindClientFacadeDTO): Promise<OutputFindClientFacadeDTO> {
-    throw new Error("Not implemented");
+    const output = await this._findUseCase.execute(input);
+
+    return {
+      id: output.id,
+      name: output.name,
+      email: output.email,
+      address: output.address,
+      createdAt: output.createdAt,
+      updatedAt: output.updatedAt,
+    }
   }
 }
