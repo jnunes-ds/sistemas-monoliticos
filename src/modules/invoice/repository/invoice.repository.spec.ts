@@ -76,16 +76,15 @@ describe("Invoice Repository Test", () => {
       zipCode: invoice.address.zipCode,
       createdAt: new Date(),
       updatedAt: new Date(),
+      items: invoice.items.map((item) => ({
+        id: item.id.id,
+        invoiceId: invoice.id.id,
+        name: item.name,
+        price: item.price,
+      }))
     }, {
       include: [InvoiceItemModel],
     });
-
-    await Promise.all(invoice.items.map((item) => ({
-      id: item.id.id,
-      invoiceId: invoice.id.id,
-      name: item.name,
-      price: item.price,
-    })))
 
     const foundInvoice = await invoiceRepository.find(invoice.id.id);
 
