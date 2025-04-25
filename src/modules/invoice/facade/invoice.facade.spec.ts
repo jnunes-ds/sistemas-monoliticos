@@ -1,14 +1,11 @@
 import {Sequelize} from "sequelize-typescript";
 import InvoiceModel from "../repository/models/invoice.model";
 import InvoiceItemModel from "../repository/models/invoice-item.model";
-import InvoiceRepository from "../repository/invoice.repository";
-import InvoiceFacade from "./invoice.facade";
-import GenerateInvoiceUsecase from "../usecase/generate-invoice/generate-invoice.usecase";
-import FindInvoiceUsecase from "../usecase/find-invoice/find-invoice.usecase";
 import Invoice from "../domain/entity/invoice.entity";
 import Address from "../domain/value-object/address.value-object";
 import InvoiceItem from "../domain/entity/invoice-item.entity";
 import Id from "../../@shared/domain/value-object/id.value-object";
+import InvoiceFacadeFactory from "../factory/facade.factory";
 
 describe("Invoice Facade Test", () => {
   let sequelize: Sequelize;
@@ -29,9 +26,7 @@ describe("Invoice Facade Test", () => {
   });
 
   it("should generate an invoice", async () => {
-    const invoiceRepository = new InvoiceRepository();
-    const generateInvoiceUseCase = new GenerateInvoiceUsecase(invoiceRepository);
-    const invoiceFacade = new InvoiceFacade({generateInvoiceUseCase});
+    const invoiceFacade = InvoiceFacadeFactory.create();
 
     const input = {
       name: "John Doe",
@@ -66,9 +61,7 @@ describe("Invoice Facade Test", () => {
   });
 
   it("should find an invoice", async () => {
-    const invoiceRepository = new InvoiceRepository();
-    const findInvoiceUseCase = new FindInvoiceUsecase(invoiceRepository);
-    const invoiceFacade = new InvoiceFacade({findInvoiceUseCase});
+    const invoiceFacade = InvoiceFacadeFactory.create();
 
     const address = new Address({
       street: "123 Main St",
