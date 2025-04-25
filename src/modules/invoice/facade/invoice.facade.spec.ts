@@ -10,7 +10,7 @@ import InvoiceFacadeFactory from "../factory/facade.factory";
 describe("Invoice Facade Test", () => {
   let sequelize: Sequelize;
 
-  beforeAll(async () => {
+  beforeEach(async () => {
     sequelize = new Sequelize({
       dialect: "sqlite",
       storage: ":memory:",
@@ -21,7 +21,7 @@ describe("Invoice Facade Test", () => {
     await sequelize.sync();
   });
 
-  afterAll(async () => {
+  afterEach(async () => {
     await sequelize.close();
   });
 
@@ -83,7 +83,7 @@ describe("Invoice Facade Test", () => {
       price: 200,
     });
 
-    const input = new Invoice({
+    const invoice = new Invoice({
       name: "John Doe",
       document: "123456789",
       address,
@@ -91,39 +91,39 @@ describe("Invoice Facade Test", () => {
     });
 
     await InvoiceModel.create({
-      id: input.id.id,
-      name: input.name,
-      document: input.document,
-      street: input.address.street,
-      number: input.address.number,
-      complement: input.address.complement,
-      city: input.address.city,
-      state: input.address.state,
-      zipCode: input.address.zipCode,
+      id: invoice.id.id,
+      name: invoice.name,
+      document: invoice.document,
+      street: invoice.address.street,
+      number: invoice.address.number,
+      complement: invoice.address.complement,
+      city: invoice.address.city,
+      state: invoice.address.state,
+      zipCode: invoice.address.zipCode,
       createdAt: new Date(),
       updatedAt: new Date(),
-      items: input.items.map((item) => ({
+      items: invoice.items.map((item) => ({
         id: item.id.id,
-        invoiceId: input.id.id,
+        invoiceId: invoice.id.id,
         name: item.name,
         price: item.price,
       }))
     }, {
-      include: [InvoiceItemModel]
+      include: [InvoiceItemModel],
     });
 
-    const result = await invoiceFacade.find({id: input.id.id});
+    const result = await invoiceFacade.find({id: invoice.id.id});
 
     expect(result).toBeDefined();
-    expect(result.id).toEqual(input.id.id);
-    expect(result.name).toEqual(input.name);
-    expect(result.document).toEqual(input.document);
-    expect(result.address.street).toEqual(input.address.street);
-    expect(result.address.number).toEqual(input.address.number);
-    expect(result.address.complement).toEqual(input.address.complement);
-    expect(result.address.city).toEqual(input.address.city);
-    expect(result.address.state).toEqual(input.address.state);
-    expect(result.address.zipCode).toEqual(input.address.zipCode);
+    expect(result.id).toEqual(invoice.id.id);
+    expect(result.name).toEqual(invoice.name);
+    expect(result.document).toEqual(invoice.document);
+    expect(result.address.street).toEqual(invoice.address.street);
+    expect(result.address.number).toEqual(invoice.address.number);
+    expect(result.address.complement).toEqual(invoice.address.complement);
+    expect(result.address.city).toEqual(invoice.address.city);
+    expect(result.address.state).toEqual(invoice.address.state);
+    expect(result.address.zipCode).toEqual(invoice.address.zipCode);
     expect(result.items).toHaveLength(2);
     expect(result.items[0].id).toEqual(item1.id.id);
     expect(result.items[0].name).toEqual(item1.name);
