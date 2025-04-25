@@ -40,7 +40,6 @@ export default class InvoiceRepository implements InvoiceGateway {
 
     const invoiceItems = await InvoiceItemModel.findAll({where: {invoiceId: invoice.id}});
 
-    console.log(JSON.stringify(invoiceItems, null, 2));
 
     return new Invoice({
       id: new Id(invoice.id),

@@ -25,7 +25,13 @@ export default class InvoiceFacade implements IInvoiceFacade {
     return this._generateInvoiceUseCase.execute(input);
   }
 
-  find(input: InputFindInvoiceFacadeDTO): Promise<OutputFindInvoiceFacadeDTO[]> {
-    throw new Error("Method not implemented.");
+  async find(input: InputFindInvoiceFacadeDTO): Promise<OutputFindInvoiceFacadeDTO> {
+    const response = await this._findInvoiceUseCase.execute(input);
+
+    if (!response) {
+      throw new Error("Invoice not found");
+    }
+
+    return response
   }
 }
