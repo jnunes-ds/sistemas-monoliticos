@@ -43,6 +43,6 @@ export default class InvoiceModel extends Model {
   declare updatedAt: Date;
 
   // Relationship with InvoiceItemModel
-  @HasMany(() => InvoiceItemModel)
+  @HasMany(() => InvoiceItemModel,{foreignKey:"invoiceId"})
   declare items: InvoiceItemModel[];
 }

@@ -20,18 +20,15 @@ export default class InvoiceRepository implements InvoiceGateway {
       zipCode: input.address.zipCode,
       createdAt: new Date(),
       updatedAt: new Date(),
-    }, {
-      include: [InvoiceItemModel]
-    })
-
-    await Promise.all(input.items.map((item) => {
-      return InvoiceItemModel.create({
+      items: input.items.map(item => ({
         id: item.id.id,
         invoiceId: input.id.id,
         name: item.name,
         price: item.price,
-      })
-    }))
+      }))
+    }, {
+      include: [InvoiceItemModel]
+    });
   }
 
   async find(id: string): Promise<Invoice> {
@@ -42,6 +39,8 @@ export default class InvoiceRepository implements InvoiceGateway {
     }
 
     const invoiceItems = await InvoiceItemModel.findAll({where: {invoiceId: invoice.id}});
+
+    console.log(JSON.stringify(invoiceItems, null, 2));
 
     return new Invoice({
       id: new Id(invoice.id),
@@ -55,7 +54,7 @@ export default class InvoiceRepository implements InvoiceGateway {
         state: invoice.state,
         zipCode: invoice.zipCode,
       }),
-      items: invoiceItems.map(item => ({
+      items: invoiceItems.map(item => new InvoiceItem({
         id: new Id(item.id),
         name: item.name,
         price: item.price,
