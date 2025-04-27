@@ -18,7 +18,7 @@ export interface OutputFindAllStoreCatalogFacadeDTO {
   }[]
 }
 
-export default interface StoreCatalogFacadeInterface {
+export default interface IStoreCatalogFacade {
   find(id: InputFindStoreCatalogFacadeDTO): Promise<OutputFindStoreCatalogFacadeDTO>
   findAll(): Promise<OutputFindAllStoreCatalogFacadeDTO>
 }

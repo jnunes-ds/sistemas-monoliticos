@@ -1,4 +1,4 @@
-import StoreCatalogFacadeInterface, {
+import IStoreCatalogFacade, {
   InputFindStoreCatalogFacadeDTO,
   OutputFindAllStoreCatalogFacadeDTO, OutputFindStoreCatalogFacadeDTO
 } from "./store-catalog.facade.interface";
@@ -11,7 +11,7 @@ export interface UseCaseProps {
   findAllProductsUseCase: FindAllProductsUseCase;
 }
 
-export default class StoreCatalogFacade implements StoreCatalogFacadeInterface {
+export default class StoreCatalogFacade implements IStoreCatalogFacade {
 
   private _findProductUseCase: FindProductUsecase;
   private _findAllProductsUseCase: FindAllProductsUseCase;
