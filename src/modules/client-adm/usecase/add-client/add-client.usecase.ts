@@ -19,6 +19,7 @@ export default class AddClientUsecase implements UseCaseInterface {
       address: new Address({
         street: input.address.street,
         number: input.address.number,
+        complement: input.address.complement,
         city: input.address.city,
         state: input.address.state,
         zipCode: input.address.zipCode,
@@ -38,6 +39,7 @@ export default class AddClientUsecase implements UseCaseInterface {
       address: {
         street: client.address.street,
         number: client.address.number,
+        complement: client.address.complement,
         city: client.address.city,
         state: client.address.state,
         zipCode: client.address.zipCode,

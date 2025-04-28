@@ -27,6 +27,9 @@ export default class ClientModel extends Model {
   declare number: string;
 
   @Column({type: STRING, allowNull: false})
+  declare complement: string;
+
+  @Column({type: STRING, allowNull: false})
   declare city: string;
 
   @Column({type: STRING, allowNull: false})

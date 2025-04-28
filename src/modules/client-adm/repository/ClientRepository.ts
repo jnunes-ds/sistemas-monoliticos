@@ -15,6 +15,7 @@ export default class ClientRepository implements ClientGateway {
       email: clientData.email,
       street: clientData.address.street,
       number: clientData.address.number,
+      complement: clientData.address.complement,
       city: clientData.address.city,
       state: clientData.address.state,
       zipCode: clientData.address.zipCode,
@@ -38,6 +39,7 @@ export default class ClientRepository implements ClientGateway {
       address: new Address({
         street: client.street,
         number: client.number,
+        complement: client.complement,
         city: client.city,
         state: client.state,
         zipCode: client.zipCode,
