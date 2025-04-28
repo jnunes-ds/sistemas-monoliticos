@@ -35,6 +35,7 @@ describe("Client-Adm Facade Test", () => {
       address: {
         street: "Test Street",
         number: "123",
+        complement: "Test Complement",
         city: "Test City",
         state: "Test State",
         zipCode: "12345678",
@@ -68,6 +69,7 @@ describe("Client-Adm Facade Test", () => {
         address: new Address({
           street: "Test Address",
           number: "123",
+          complement: "Test Complement",
           city: "Test City",
           state: "Test State",
           zipCode: "12345678",

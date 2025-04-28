@@ -32,6 +32,7 @@ describe("Client Repository Test", () => {
       address: new Address({
         street: "Test Street",
         number: "123",
+        complement: "Test Complement",
         city: "Test City",
         state: "Test State",
         zipCode: "12345678",
@@ -66,6 +67,7 @@ describe("Client Repository Test", () => {
       email: "testclient@mail.com",
       street: "Test Street",
       number: "123",
+      complement: "Test Complement",
       city: "Test City",
       state: "Test State",
       zipCode: "12345678",
