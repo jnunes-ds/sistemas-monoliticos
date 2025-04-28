@@ -20,6 +20,7 @@ export default class FindClientUsecase implements UseCaseInterface {
       address: {
         street: client.address.street,
         number: client.address.number,
+        complement: client.address.complement,
         city: client.address.city,
         state: client.address.state,
         zipCode: client.address.zipCode,

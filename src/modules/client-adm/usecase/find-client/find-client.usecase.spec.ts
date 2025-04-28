@@ -11,6 +11,7 @@ const client = new Client({
   address: new Address({
     street: "123 Main St",
     number: "456",
+    complement: "123456789",
     city: "Anytown",
     state: "CA",
     zipCode: "12345",
@@ -43,6 +44,7 @@ describe("Find Client Usecase", () => {
       address: {
         street: client.address.street,
         number: client.address.number,
+        complement: client.address.complement,
         city: client.address.city,
         state: client.address.state,
         zipCode: client.address.zipCode,

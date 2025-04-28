@@ -35,6 +35,7 @@ export default class ClientAdmFacade implements IClientAdmFacade {
       address: {
         street: output.document.street,
         number: output.document.number,
+        complement: output.document.complement,
         city: output.document.city,
         state: output.document.state,
         zipCode: output.document.zipCode,
