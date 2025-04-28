@@ -3,7 +3,8 @@ import {Promise} from "ts-toolbelt/out/Any/Promise";
 import ClientGateway from "../../gateway/client.gateway";
 import {InputAddClientDTO, OutputAddClientDTO} from "./add-client.dto";
 import Id from "../../../@shared/domain/value-object/id.value-object";
-import Client from "../../domain/client.entity";
+import Client from "../../domain/entity/client.entity";
+import Address from "../../domain/value-object/address.value-object";
 
 export default class AddClientUsecase implements UseCaseInterface {
   constructor(private _clientRepository: ClientGateway) {}
@@ -13,18 +14,34 @@ export default class AddClientUsecase implements UseCaseInterface {
     const props = {
       id: new Id(input.id),
       name: input.name,
+      document: input.document,
       email: input.email,
-      address: input.address,
+      address: new Address({
+        street: input.address.street,
+        number: input.address.number,
+        city: input.address.city,
+        state: input.address.state,
+        zipCode: input.address.zipCode,
+      }),
     }
 
     const client = new Client(props);
+    console.log(client);
     await this._clientRepository.add(client);
+
 
     return {
       id: client.id.id,
       name: client.name,
+      document: client.document,
       email: client.email,
-      address: client.address,
+      address: {
+        street: client.address.street,
+        number: client.address.number,
+        city: client.address.city,
+        state: client.address.state,
+        zipCode: client.address.zipCode,
+      },
       createdAt: client.createdAt,
       updatedAt: client.updatedAt,
     }

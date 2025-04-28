@@ -1,8 +1,9 @@
 import {Sequelize} from "sequelize-typescript";
 import ClientModel from "./client.model";
 import ClientRepository from "./ClientRepository";
-import Client from "../domain/client.entity";
 import Id from "../../@shared/domain/value-object/id.value-object";
+import Client from "../domain/entity/client.entity";
+import Address from "../domain/value-object/address.value-object";
 
 describe("Client Repository Test", () => {
   let sequelize: Sequelize;
@@ -26,8 +27,15 @@ describe("Client Repository Test", () => {
     const client = new Client({
       id: new Id("123Abc"),
       name: "Test Client",
+      document: "123456789",
       email: "test@mail.com",
-      address: "Test Address 1",
+      address: new Address({
+        street: "Test Street",
+        number: "123",
+        city: "Test City",
+        state: "Test State",
+        zipCode: "12345678",
+      }),
       createdAt: new Date(),
       updatedAt: new Date(),
     });
@@ -41,7 +49,11 @@ describe("Client Repository Test", () => {
     expect(result.id).toEqual(client.id.id);
     expect(result.name).toEqual(client.name);
     expect(result.email).toEqual(client.email);
-    expect(result.address).toEqual(client.address);
+    expect(result.street).toEqual(client.address.street);
+    expect(result.number).toEqual(client.address.number);
+    expect(result.city).toEqual(client.address.city);
+    expect(result.state).toEqual(client.address.state);
+    expect(result.zipCode).toEqual(client.address.zipCode);
     expect(result.createdAt).toStrictEqual(client.createdAt);
     expect(result.updatedAt).toStrictEqual(client.updatedAt);
   });
@@ -50,8 +62,13 @@ describe("Client Repository Test", () => {
     const client = await ClientModel.create({
       id: "123Abc",
       name: "Test Client",
+      document: "123456789",
       email: "testclient@mail.com",
-      address: "123 Test St",
+      street: "Test Street",
+      number: "123",
+      city: "Test City",
+      state: "Test State",
+      zipCode: "12345678",
       createdAt: new Date(),
       updatedAt: new Date(),
     });
@@ -62,7 +79,7 @@ describe("Client Repository Test", () => {
     expect(result.id.id).toEqual(client.id);
     expect(result.name).toEqual(client.name);
     expect(result.email).toEqual(client.email);
-    expect(result.address).toEqual(client.address);
+    expect(result.address.street).toEqual(client.street);
     expect(result.createdAt).toEqual(client.createdAt);
     expect(result.updatedAt).toEqual(client.updatedAt);
   })

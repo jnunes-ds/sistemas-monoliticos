@@ -1,5 +1,5 @@
-import {InputAddClientDTO} from "../usecase/add-client/add-client.dto";
-import Client from "../domain/client.entity";
+import Client from "../domain/entity/client.entity";
+
 
 export default interface ClientGateway {
   add(clientData: Client): Promise<void>;

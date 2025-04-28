@@ -1,4 +1,3 @@
-import {UsecaseProps} from "../../../product-adm/facade/product-adm.facade";
 import UseCaseInterface from "../../../@shared/usecase/use-case.interface";
 import {InputFindClientDTO, OutputFindClientDTO} from "./find-client.dto";
 import ClientGateway from "../../gateway/client.gateway";
@@ -16,8 +15,15 @@ export default class FindClientUsecase implements UseCaseInterface {
     return {
       id: client.id.id,
       name: client.name,
+      document: client.document,
       email: client.email,
-      address: client.address,
+      address: {
+        street: client.address.street,
+        number: client.address.number,
+        city: client.address.city,
+        state: client.address.state,
+        zipCode: client.address.zipCode,
+      },
       createdAt: client.createdAt,
       updatedAt: client.updatedAt,
     };
