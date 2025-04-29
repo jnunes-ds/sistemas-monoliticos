@@ -1,11 +1,16 @@
 import UseCaseInterface from "../../../@shared/usecase/use-case.interface";
-import {Promise} from "ts-toolbelt/out/Any/Promise";
 import {InputPlaceOrderDTO, OutputPlaceOrderDTO} from "./place-order.dto";
 import IClientAdmFacade from "../../../client-adm/facade/client-adm.facade.interface";
 import IProductAdmFacade from "../../../product-adm/facade/product-adm.facade.interface";
 import Id from "../../../@shared/domain/value-object/id.value-object";
 import Product from "../../domain/product.entity";
 import IStoreCatalogFacade from "../../../store-catalog/facade/store-catalog.facade.interface";
+import Client from "../../domain/client.entity";
+import Order from "../../domain/order.entity";
+import IInvoiceFacade from "../../../invoice/facade/invoice.facade.interface";
+import IPaymentFacade from "../../../payment/facade/facade.interface";
+import CheckoutGateway from "../../gateway/checkout.gateway";
+import Address from "../../../client-adm/domain/value-object/address.value-object";
 
 
 export default class PlaceOrderUsecase implements UseCaseInterface {
@@ -13,6 +18,9 @@ export default class PlaceOrderUsecase implements UseCaseInterface {
     private _clientFacade: IClientAdmFacade,
     private _productFacade: IProductAdmFacade,
     private _catalogFacade: IStoreCatalogFacade,
+    private _repository: CheckoutGateway,
+    private _invoiceFacade: IInvoiceFacade,
+    private _paymentFacade: IPaymentFacade
   ) {}
 
   async execute(input: InputPlaceOrderDTO): Promise<OutputPlaceOrderDTO> {
@@ -23,24 +31,65 @@ export default class PlaceOrderUsecase implements UseCaseInterface {
 
     await this.validateProduct(input);
 
-    // TODO - recuperar o produto
+    const products = await Promise.all(input.products.map(product => this.getProduct(product.productId)))
 
-    // TODO - criar o objeto do cliente
-    // TODO - criar o objeto da order (client, products)
+    const clientObj = new Client({
+      id: new Id(client.id),
+      name: client.name,
+      email: client.email,
+      address: new Address({
+        street: client.address.street,
+        number: client.address.number,
+        complement: client.address.complement,
+        city: client.address.city,
+        state: client.address.state,
+        zipCode: client.address.zipCode,
+      }).fullAddress,
+    });
 
-    // TODO - processpayment -> paymentfacade.process (orderid, amount)
+    const order = new Order({client: clientObj, products});
 
-    // TODO - case pagamento seja aprovado -> Gerar invoice
-    // TODO - mudar statos da minha order para approved
-    // TODO - retornar dto
+    const payment = await this._paymentFacade.process({
+      orderId: order.id.id,
+      amount: order.total,
+    });
+
+    const invoice =
+      payment.status === "approved"
+        ? await this._invoiceFacade.generate({
+            name: client.name,
+            document: client.document,
+            street: client.address.street,
+            number: client.address.number,
+            complement: client.address.complement,
+            city: client.address.city,
+            state: client.address.state,
+            zipCode: client.address.zipCode,
+            items: order.products.map((product) => ({
+              id: product.id.id,
+              name: product.name,
+              price: product.salesPrice,
+            })),
+          })
+        : null;
+
+    payment.status === "approved" && order.approve();
+    this._repository.addOrder({
+      clientId: order.client.id.id,
+      products: order.products.map((product) => ({
+        productId: product.id.id,
+        name: product.name,
+        price: product.salesPrice,
+      })),
+    });
 
 
     return {
-      id: "",
-      invoiceId: "",
-      status: "",
-      total: 0,
-      products: [],
+      id: order.id.id,
+      invoiceId: payment.status === "approved" ? invoice.id : null,
+      status: payment.status,
+      total: order.total,
+      products: order.products.map((product) => ({productId: product.id.id})),
     };
   }
 
