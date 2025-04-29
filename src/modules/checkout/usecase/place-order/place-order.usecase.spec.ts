@@ -139,11 +139,6 @@ describe("Place Order Use Case Unit Test", () => {
       // @ts-expect-error - no params in constructor
       const placeOrderUseCase = new PlaceOrderUsecase();
 
-      const mockValidateProduct = jest
-        // @ts-expect-error - spy on private method
-        .spyOn(placeOrderUseCase, "validateProduct")
-        // @ts-expect-error - not return never
-        .mockRejectedValue(new Error("No product selected"));
 
       // @ts-expect-error - force set clientFacade
       placeOrderUseCase["_clientFacade"] = mockClientFacade;
@@ -265,6 +260,62 @@ describe("Place Order Use Case Unit Test", () => {
         expect(mockInvoiceFacade.generate).toHaveBeenCalledTimes(0);
 
       });
+
+      it("should be approved", async () => {
+        mockPaymentFacade.process = mockPaymentFacade.process.mockReturnValue({
+          transactionId: "it",
+          orderId: "1o",
+          amount: 300,
+          status: "approved",
+          createdAt: new Date(),
+          updatedAt: new Date(),
+        });
+
+        const input: InputPlaceOrderDTO = {
+          clientId: "1c",
+          products: [{productId: "1"}, {productId: "2"}]
+        }
+
+        let output = await placeorderUseCase.execute(input);
+
+        expect(output.invoiceId).toBe("1i");
+        expect(output.total).toBe(300);
+        expect(output.products).toStrictEqual([{productId: "1"}, {productId: "2"}]);
+        expect(mockClientFacade.find).toHaveBeenCalled();
+        expect(mockClientFacade.find).toHaveBeenCalledWith({id: "1c"});
+        expect(mockValidateProducts).toHaveBeenCalled();
+        expect(mockValidateProducts).toHaveBeenCalledWith(input);
+        expect(mockGetProduct).toHaveBeenCalledTimes(2)
+        expect(mockCheckoutRepository.addOrder).toHaveBeenCalledTimes(1);
+        expect(mockPaymentFacade.process).toHaveBeenCalledTimes(1);
+        expect(mockPaymentFacade.process).toHaveBeenCalledWith({
+          orderId: output.id,
+          amount: output.total
+        });
+        expect(mockInvoiceFacade.generate).toHaveBeenCalledTimes(1);
+        expect(mockInvoiceFacade.generate).toHaveBeenCalledWith({
+          name: clientProps.name,
+          document: clientProps.document,
+          street: clientProps.address.street,
+          number: clientProps.address.number,
+          complement: clientProps.address.complement,
+          city: clientProps.address.city,
+          state: clientProps.address.state,
+          zipCode: clientProps.address.zipCode,
+          items: [
+            {
+              id: products["1"].id.id,
+              name: products["1"].name,
+              price: products["1"].salesPrice
+            },
+            {
+              id: products["2"].id.id,
+              name: products["2"].name,
+              price: products["2"].salesPrice
+            }
+          ]
+        });
+      })
 
     })
   });
