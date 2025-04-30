@@ -1,6 +1,6 @@
-import UseCaseInterface from "../../../@shared/usecase/use-case.interface";
+import UseCaseInterface from "@shared/usecase/use-case.interface";
 import {InputFindClientDTO, OutputFindClientDTO} from "./find-client.dto";
-import ClientGateway from "../../gateway/client.gateway";
+import ClientGateway from "@client-adm/gateway/client.gateway";
 
 export default class FindClientUsecase implements UseCaseInterface {
   constructor(private _clientRepository: ClientGateway) {}

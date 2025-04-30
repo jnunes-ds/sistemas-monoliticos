@@ -1,8 +1,8 @@
-import PaymentGateway from "../../../gateway/payment.gateway";
+import PaymentGateway from "@payment/gateway/payment.gateway";
 import {Promise} from "ts-toolbelt/out/Any/Promise";
-import Transaction from "../../../domain/transaction";
+import Transaction from "@payment/domain/transaction";
 import TransactionModel from "./transaction.model";
-import Id from "../../../../@shared/domain/value-object/id.value-object";
+import Id from "@shared/domain/value-object/id.value-object";
 
 export default class TransactionRepository implements PaymentGateway {
   async save(input: Transaction): Promise<Transaction> {

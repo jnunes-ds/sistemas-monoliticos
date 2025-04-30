@@ -1,7 +1,7 @@
 import PlaceOrderUsecase from "./place-order.usecase";
 import {InputPlaceOrderDTO} from "./place-order.dto";
-import Id from "../../../@shared/domain/value-object/id.value-object";
-import Product from "../../domain/product.entity";
+import Id from "@shared/domain/value-object/id.value-object";
+import Product from "@checkout/domain/product.entity";
 
 const mockDate = new Date(2000, 1, 1);
 

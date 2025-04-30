@@ -89,9 +89,13 @@ const config: Config = {
 
   // A map from regular expressions to module names or to arrays of module names that allow to stub out resources with a single module
   moduleNameMapper: {
-    '^@domain/(.*)$': '<rootDir>/src/domain/$1',
-    '^@infra/(.*)$': '<rootDir>/src/infrastructure/$1',
-    '^@usecase/(.*)$': '<rootDir>/dist/usecase/$1'
+    '^@shared/(.*)$': '<rootDir>/src/modules/@shared/$1',
+    '^@checkout/(.*)$': '<rootDir>/src/modules/checkout/$1',
+    '^@client-adm/(.*)$': '<rootDir>/src/modules/client-adm/$1',
+    '^@invoice/(.*)$': '<rootDir>/src/modules/invoice/$1',
+    '^@payment/(.*)$': '<rootDir>/src/modules/payment/$1',
+    '^@product-adm/(.*)$': '<rootDir>/src/modules/product-adm/$1',
+    '^@store-catalog/(.*)$': '<rootDir>/src/modules/store-catalog/$1'
   },
 
   // An array of regexp pattern strings, matched against all module paths before considered 'visible' to the module loader

@@ -1,7 +1,7 @@
-import IPaymentFacade from "../facade/facade.interface";
-import TransactionRepository from "../infrastructure/repository/sequelize/transaction.repository";
-import ProcessPaymentUsecase from "../usecase/process-payment/process-payment.usecase";
-import PaymentFacade from "../facade/payment.facade";
+import IPaymentFacade from "@payment/facade/facade.interface";
+import TransactionRepository from "@payment/infrastructure/repository/sequelize/transaction.repository";
+import ProcessPaymentUsecase from "@payment/usecase/process-payment/process-payment.usecase";
+import PaymentFacade from "@payment/facade/payment.facade";
 
 export default class PaymentFacadeFactory {
   static create(): IPaymentFacade {

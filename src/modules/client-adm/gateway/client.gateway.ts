@@ -1,4 +1,4 @@
-import Client from "../domain/entity/client.entity";
+import Client from "@client-adm/domain/entity/client.entity";
 
 
 export default interface ClientGateway {

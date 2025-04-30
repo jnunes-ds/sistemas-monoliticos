@@ -1,6 +1,6 @@
-import UseCaseInterface from "../../../@shared/usecase/use-case.interface";
+import UseCaseInterface from "@shared/usecase/use-case.interface";
 import {Promise} from "ts-toolbelt/out/Any/Promise";
-import ProductGateway from "../../gateway/product.gateway";
+import ProductGateway from "@store-catalog/gateway/product.gateway";
 import {OutputFindAllProductsDTO} from "./find-all-products.dto";
 
 export default class FindAllProductsUseCase implements UseCaseInterface {

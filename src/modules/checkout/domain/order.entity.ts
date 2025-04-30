@@ -1,7 +1,8 @@
 import Product from "./product.entity";
 import Client from "./client.entity";
-import Id from "../../@shared/domain/value-object/id.value-object";
-import BaseEntity from "../../@shared/domain/entity/base.entity";
+import Id from "@shared/domain/value-object/id.value-object";
+import BaseEntity from "@shared/domain/entity/base.entity";
+
 
 type OrderProps = {
   id?: Id;

@@ -1,7 +1,7 @@
-import ClientRepository from "../infrastructure/repository/sequelize/ClientRepository";
-import AddClientUsecase from "../usecase/add-client/add-client.usecase";
-import FindClientUsecase from "../usecase/find-client/find-client.usecase";
-import ClientAdmFacade from "../facade/client-adm.facade";
+import ClientRepository from "@client-adm/infrastructure/repository/sequelize/ClientRepository";
+import AddClientUsecase from "@client-adm/usecase/add-client/add-client.usecase";
+import FindClientUsecase from "@client-adm/usecase/find-client/find-client.usecase";
+import ClientAdmFacade from "@client-adm/facade/client-adm.facade";
 
 export default class ClientAdmFacadeFactory {
   static create() {

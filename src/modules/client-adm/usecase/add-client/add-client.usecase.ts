@@ -1,10 +1,10 @@
-import UseCaseInterface from "../../../@shared/usecase/use-case.interface";
+import UseCaseInterface from "@shared/usecase/use-case.interface";
 import {Promise} from "ts-toolbelt/out/Any/Promise";
-import ClientGateway from "../../gateway/client.gateway";
+import ClientGateway from "@client-adm/gateway/client.gateway";
 import {InputAddClientDTO, OutputAddClientDTO} from "./add-client.dto";
-import Id from "../../../@shared/domain/value-object/id.value-object";
-import Client from "../../domain/entity/client.entity";
-import Address from "../../domain/value-object/address.value-object";
+import Id from "@shared/domain/value-object/id.value-object";
+import Client from "@client-adm/domain/entity/client.entity";
+import Address from "@client-adm/domain/value-object/address.value-object";
 
 export default class AddClientUsecase implements UseCaseInterface {
   constructor(private _clientRepository: ClientGateway) {}

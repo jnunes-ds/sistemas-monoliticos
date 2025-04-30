@@ -1,11 +1,11 @@
-import UseCaseInterface from "../../../@shared/usecase/use-case.interface";
+import UseCaseInterface from "@shared/usecase/use-case.interface";
 import {Promise} from "ts-toolbelt/out/Any/Promise";
 import {InputGenerateInvoiceUseCaseDTO, OutputGenerateInvoiceUseCaseDTO} from "./generate-invoice.dto";
-import InvoiceGateway from "../../gateway/invoice.gateway";
-import Invoice from "../../domain/entity/invoice.entity";
-import Id from "../../../@shared/domain/value-object/id.value-object";
-import Address from "../../domain/value-object/address.value-object";
-import InvoiceItem from "../../domain/entity/invoice-item.entity";
+import InvoiceGateway from "@invoice/gateway/invoice.gateway";
+import Invoice from "@invoice/domain/entity/invoice.entity";
+import Id from "@shared/domain/value-object/id.value-object";
+import Address from "@invoice/domain/value-object/address.value-object";
+import InvoiceItem from "@invoice/domain/entity/invoice-item.entity";
 
 export default class GenerateInvoiceUsecase implements UseCaseInterface {
   constructor(private _invoiceRepository: InvoiceGateway) {}

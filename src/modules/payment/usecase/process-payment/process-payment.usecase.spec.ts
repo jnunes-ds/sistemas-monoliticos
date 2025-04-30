@@ -1,5 +1,5 @@
-import Transaction from "../../domain/transaction";
-import Id from "../../../@shared/domain/value-object/id.value-object";
+import Transaction from "@payment/domain/transaction";
+import Id from "@shared/domain/value-object/id.value-object";
 import ProcessPaymentUsecase from "./process-payment.usecase";
 
 const transaction: Transaction = new Transaction({

@@ -1,10 +1,10 @@
 import {Sequelize} from "sequelize-typescript";
-import ClientRepository from "../infrastructure/repository/sequelize/ClientRepository";
-import Id from "../../@shared/domain/value-object/id.value-object";
-import ClientAdmFacadeFactory from "../factory/facade.factory";
-import ClientModel from "../infrastructure/repository/sequelize/client.model";
-import Client from "../domain/entity/client.entity";
-import Address from "../domain/value-object/address.value-object";
+import ClientRepository from "@client-adm/infrastructure/repository/sequelize/ClientRepository";
+import Id from "@shared/domain/value-object/id.value-object";
+import ClientAdmFacadeFactory from "@client-adm/factory/facade.factory";
+import ClientModel from "@client-adm/infrastructure/repository/sequelize/client.model";
+import Client from "@client-adm/domain/entity/client.entity";
+import Address from "@client-adm/domain/value-object/address.value-object";
 
 describe("Client-Adm Facade Test", () => {
   let sequelize: Sequelize;

@@ -1,7 +1,7 @@
-import Id from "../../../@shared/domain/value-object/id.value-object";
+import Id from "@shared/domain/value-object/id.value-object";
 import FindClientUsecase from "./find-client.usecase";
-import Client from "../../domain/entity/client.entity";
-import Address from "../../domain/value-object/address.value-object";
+import Client from "@client-adm/domain/entity/client.entity";
+import Address from "@client-adm/domain/value-object/address.value-object";
 
 const client = new Client({
   id: new Id("123ABC"),

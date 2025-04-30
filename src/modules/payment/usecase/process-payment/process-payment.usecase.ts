@@ -1,8 +1,8 @@
-import UseCaseInterface from "../../../@shared/usecase/use-case.interface";
+import UseCaseInterface from "@shared/usecase/use-case.interface";
 import {Promise} from "ts-toolbelt/out/Any/Promise";
-import PaymentGateway from "../../gateway/payment.gateway";
+import PaymentGateway from "@payment/gateway/payment.gateway";
 import {InputProcessPaymentDTO, OutputProcessPaymentDTO} from "./process-payment.dto";
-import Transaction from "../../domain/transaction";
+import Transaction from "@payment/domain/transaction";
 
 export default class ProcessPaymentUsecase implements UseCaseInterface {
 

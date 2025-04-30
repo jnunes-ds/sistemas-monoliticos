@@ -4,7 +4,7 @@ import IClientAdmFacade, {
   OutputFindClientFacadeDTO
 } from "./client-adm.facade.interface";
 import {Promise} from "ts-toolbelt/out/Any/Promise";
-import UseCaseInterface from "../../@shared/usecase/use-case.interface";
+import UseCaseInterface from "@shared/usecase/use-case.interface";
 
 export interface UseCaseProps {
   findClientUseCase?: UseCaseInterface;

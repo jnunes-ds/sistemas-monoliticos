@@ -1,6 +1,6 @@
 import {InputAddProductDto, OutputAddProductDto} from "./add-product.dto";
-import Product from "../../domain/product.entity";
-import ProductGateway from "../../gateway/product.gateway";
+import Product from "@product-adm/domain/product.entity";
+import ProductGateway from "@product-adm/gateway/product.gateway";
 
 export default class AddProductUseCase {
 

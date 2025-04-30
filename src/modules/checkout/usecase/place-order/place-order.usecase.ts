@@ -1,16 +1,16 @@
-import UseCaseInterface from "../../../@shared/usecase/use-case.interface";
+import UseCaseInterface from "@shared/usecase/use-case.interface";
 import {InputPlaceOrderDTO, OutputPlaceOrderDTO} from "./place-order.dto";
-import IClientAdmFacade from "../../../client-adm/facade/client-adm.facade.interface";
-import IProductAdmFacade from "../../../product-adm/facade/product-adm.facade.interface";
-import Id from "../../../@shared/domain/value-object/id.value-object";
-import Product from "../../domain/product.entity";
-import IStoreCatalogFacade from "../../../store-catalog/facade/store-catalog.facade.interface";
-import Client from "../../domain/client.entity";
-import Order from "../../domain/order.entity";
-import IInvoiceFacade from "../../../invoice/facade/invoice.facade.interface";
-import IPaymentFacade from "../../../payment/facade/facade.interface";
-import CheckoutGateway from "../../gateway/checkout.gateway";
-import Address from "../../../client-adm/domain/value-object/address.value-object";
+import IClientAdmFacade from "@client-adm/facade/client-adm.facade.interface";
+import IProductAdmFacade from "@product-adm/facade/product-adm.facade.interface";
+import Id from "@shared/domain/value-object/id.value-object";
+import Product from "@checkout/domain/product.entity";
+import IStoreCatalogFacade from "@store-catalog/facade/store-catalog.facade.interface";
+import Client from "@checkout/domain/client.entity";
+import Order from "@checkout/domain/order.entity";
+import IInvoiceFacade from "@invoice/facade/invoice.facade.interface";
+import IPaymentFacade from "@payment/facade/facade.interface";
+import CheckoutGateway from "@checkout/gateway/checkout.gateway";
+import Address from "@client-adm/domain/value-object/address.value-object";
 
 
 export default class PlaceOrderUsecase implements UseCaseInterface {

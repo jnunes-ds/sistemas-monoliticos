@@ -1,5 +1,5 @@
-import ProductGateway from "../../gateway/product.gateway";
-import UseCaseInterface from "../../../@shared/usecase/use-case.interface";
+import ProductGateway from "@store-catalog/gateway/product.gateway";
+import UseCaseInterface from "@shared/usecase/use-case.interface";
 import {Promise} from "ts-toolbelt/out/Any/Promise";
 import {InputFindProductDTO, OutputFindProductDTO} from "./find-product.dto";
 
