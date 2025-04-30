@@ -2,10 +2,10 @@ import {Sequelize} from "sequelize-typescript";
 import InvoiceModel from "./models/invoice.model";
 import InvoiceItemModel from "./models/invoice-item.model";
 import InvoiceRepository from "./invoice.repository";
-import Invoice from "../domain/entity/invoice.entity";
-import Id from "../../@shared/domain/value-object/id.value-object";
-import Address from "../domain/value-object/address.value-object";
-import InvoiceItem from "../domain/entity/invoice-item.entity";
+import Invoice from "../../../domain/entity/invoice.entity";
+import Id from "../../../../@shared/domain/value-object/id.value-object";
+import Address from "../../../domain/value-object/address.value-object";
+import InvoiceItem from "../../../domain/entity/invoice-item.entity";
 
 describe("Invoice Repository Test", () => {
   let sequelize: Sequelize;

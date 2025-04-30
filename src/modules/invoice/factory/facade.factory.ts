@@ -1,4 +1,4 @@
-import InvoiceRepository from "../repository/invoice.repository";
+import InvoiceRepository from "../infrastructure/repository/sequelize/invoice.repository";
 import GenerateInvoiceUsecase from "../usecase/generate-invoice/generate-invoice.usecase";
 import InvoiceFacade from "../facade/invoice.facade";
 import FindInvoiceUsecase from "../usecase/find-invoice/find-invoice.usecase";

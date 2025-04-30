@@ -1,9 +1,9 @@
-import ClientGateway from "../gateway/client.gateway";
+import ClientGateway from "../../../gateway/client.gateway";
 import {Promise} from "ts-toolbelt/out/Any/Promise";
 import ClientModel from "./client.model";
-import Id from "../../@shared/domain/value-object/id.value-object";
-import Client from "../domain/entity/client.entity";
-import Address from "../domain/value-object/address.value-object";
+import Id from "../../../../@shared/domain/value-object/id.value-object";
+import Client from "../../../domain/entity/client.entity";
+import Address from "../../../domain/value-object/address.value-object";
 
 export default class ClientRepository implements ClientGateway {
   async add(clientData: Client): Promise<void> {

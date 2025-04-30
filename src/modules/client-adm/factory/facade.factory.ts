@@ -1,4 +1,4 @@
-import ClientRepository from "../repository/ClientRepository";
+import ClientRepository from "../infrastructure/repository/sequelize/ClientRepository";
 import AddClientUsecase from "../usecase/add-client/add-client.usecase";
 import FindClientUsecase from "../usecase/find-client/find-client.usecase";
 import ClientAdmFacade from "../facade/client-adm.facade";
