@@ -17,7 +17,6 @@ productAdmRoute.post("/", async (req, res) => {
 
     const output = await usecase.execute(productDto);
 
-  console.log("ta aqui")
     res.status(200).json(output);
   } catch (error) {
     console.log(error);
