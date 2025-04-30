@@ -23,5 +23,10 @@ describe("E2E Tests for Product API", () => {
 
     expect(response.status).toBe(200);
     expect(response.body.id).toBe("123Abc");
+    expect(response.body.name).toBe("Test Product");
+    expect(response.body.description).toBe("Test description");
+    expect(response.body.purchasePrice).toBe(100);
+    expect(response.body.stock).toBe(10);
   });
+
 });
