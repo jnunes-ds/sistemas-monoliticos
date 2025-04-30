@@ -49,8 +49,4 @@ export default class Address implements ValueObject {
   get zipCode(): string {
     return this._zipCode;
   }
-
-  get fullAddress(): string {
-    return `${this._street}, ${this._number}, ${this._complement}, ${this._city}, ${this._state}, ${this._zipCode}`;
-  }
 }
