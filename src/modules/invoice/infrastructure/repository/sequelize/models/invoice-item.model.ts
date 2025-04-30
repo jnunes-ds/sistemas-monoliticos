@@ -1,5 +1,5 @@
 import {Column, ForeignKey, Model, PrimaryKey, Table} from "sequelize-typescript";
-import {DATE, FLOAT, STRING} from "sequelize";
+import {FLOAT, STRING} from "sequelize";
 import InvoiceModel from "./invoice.model";
 
 @Table({
