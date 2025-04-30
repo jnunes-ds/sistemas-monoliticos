@@ -63,7 +63,7 @@ describe("Product Repository Test", () => {
       updatedAt: new Date(),
     });
 
-    const product = await productRepository.find(new Id("123Abc"));
+    const product = await productRepository.find("123Abc");
 
     expect(product.id.id).toEqual("123Abc");
     expect(product.name).toEqual("Product 1");

@@ -15,13 +15,13 @@ export default class ProductRepository implements ProductGateway {
           updatedAt: new Date(),
         });
     }
-    async find(id: Id): Promise<Product> {
+    async find(id: string): Promise<Product> {
       const product = await ProductModel.findOne({
-        where: { id: id.id },
+        where: { id: id },
       });
 
       if (!product) {
-        throw new Error(`Product with id ${id.id} not found`);
+        throw new Error(`Product with id ${id} not found`);
       }
 
       return new Product({

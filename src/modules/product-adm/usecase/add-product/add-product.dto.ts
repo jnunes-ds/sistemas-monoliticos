@@ -1,7 +1,7 @@
 import Id from "@shared/domain/value-object/id.value-object";
 
 export interface InputAddProductDto {
-  id?: Id;
+  id?: string;
   name: string;
   description: string;
   purchasePrice: number;
@@ -9,7 +9,7 @@ export interface InputAddProductDto {
 }
 
 export interface OutputAddProductDto {
-  id: Id;
+  id: string;
   name: string;
   description: string;
   purchasePrice: number;
