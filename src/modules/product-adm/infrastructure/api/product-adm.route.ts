@@ -1,7 +1,6 @@
 import express from "express";
 import AddProductUseCase from "@product-adm/usecase/add-product/add-product.usecase";
 import ProductRepository from "@product-adm/infrastructure/repository/sequelize/product.repository";
-import Id from "@shared/domain/value-object/id.value-object";
 
 export const productAdmRoute = express.Router();
 
