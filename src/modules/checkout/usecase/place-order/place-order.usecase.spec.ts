@@ -23,9 +23,9 @@ describe("Place Order Use Case Unit Test", () => {
 
     it("should throw an error when product is out of stock", async () => {
       const mockProductFacade = {
-        checkStock: jest.fn(({productId}: {productId: Id}) => Promise.resolve({
+        checkStock: jest.fn(({productId}: {productId: string}) => Promise.resolve({
           productId,
-          stock: productId.id === "1" ? 0 : 10,
+          stock: productId === "1" ? 0 : 10,
         }))
       };
 
@@ -189,10 +189,10 @@ describe("Place Order Use Case Unit Test", () => {
       }
 
       const placeorderUseCase = new PlaceOrderUsecase(
+        mockCheckoutRepository,
         mockClientFacade,
         null,
         null,
-        mockCheckoutRepository,
         mockInvoiceFacade,
         mockPaymentFacade
       );
