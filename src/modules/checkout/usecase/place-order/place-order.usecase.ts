@@ -15,10 +15,10 @@ import Address from "@client-adm/domain/value-object/address.value-object";
 
 export default class PlaceOrderUsecase implements UseCaseInterface {
   constructor(
+    private _repository: CheckoutGateway,
     private _clientFacade: IClientAdmFacade,
     private _productFacade: IProductAdmFacade,
     private _catalogFacade: IStoreCatalogFacade,
-    private _repository: CheckoutGateway,
     private _invoiceFacade: IInvoiceFacade,
     private _paymentFacade: IPaymentFacade
   ) {}
@@ -103,7 +103,7 @@ export default class PlaceOrderUsecase implements UseCaseInterface {
 
   private async checkStock(products: { productId: string }[]) {
     for (const p of products) {
-      const product = await this._productFacade.checkStock({productId: new Id(p.productId)});
+      const product = await this._productFacade.checkStock({productId: p.productId});
       if (!product.stock) {
         throw new Error(`Product ${p.productId} is out of stock`);
       }
