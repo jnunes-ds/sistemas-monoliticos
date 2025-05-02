@@ -1,9 +1,10 @@
 import {Sequelize} from "sequelize-typescript";
-import ClientRepository from "../repository/ClientRepository";
-import Client from "../domain/client.entity";
-import Id from "../../@shared/domain/value-object/id.value-object";
-import ClientAdmFacadeFactory from "../factory/facade.factory";
-import ClientModel from "../repository/client.model";
+import ClientRepository from "@client-adm/infrastructure/repository/sequelize/ClientRepository";
+import Id from "@shared/domain/value-object/id.value-object";
+import ClientAdmFacadeFactory from "@client-adm/factory/facade.factory";
+import ClientModel from "@client-adm/infrastructure/repository/sequelize/client.model";
+import Client from "@client-adm/domain/entity/client.entity";
+import Address from "@client-adm/domain/value-object/address.value-object";
 
 describe("Client-Adm Facade Test", () => {
   let sequelize: Sequelize;
@@ -29,8 +30,16 @@ describe("Client-Adm Facade Test", () => {
     const input = {
       id: "123ABC",
       name: "Test Client Name",
+      document: "123456789",
       email: "test@mail.com",
-      address: "Test Address",
+      address: {
+        street: "Test Street",
+        number: "123",
+        complement: "Test Complement",
+        city: "Test City",
+        state: "Test State",
+        zipCode: "12345678",
+      },
     }
 
     await facade.add(input);
@@ -41,7 +50,11 @@ describe("Client-Adm Facade Test", () => {
     expect(client.id).toEqual(input.id);
     expect(client.name).toEqual(input.name);
     expect(client.email).toEqual(input.email);
-    expect(client.address).toEqual(input.address);
+    expect(client.street).toEqual(input.address.street);
+    expect(client.number).toEqual(input.address.number);
+    expect(client.city).toEqual(input.address.city);
+    expect(client.state).toEqual(input.address.state);
+    expect(client.zipCode).toEqual(input.address.zipCode);
   });
 
   it("should find a client", async () => {
@@ -51,8 +64,16 @@ describe("Client-Adm Facade Test", () => {
       await clientRepository.add(new Client({
         id: new Id("123ABC"),
         name: "Test Client Name",
+        document: "123456789",
         email: "test@mail.com",
-        address: "Test Address",
+        address: new Address({
+          street: "Test Address",
+          number: "123",
+          complement: "Test Complement",
+          city: "Test City",
+          state: "Test State",
+          zipCode: "12345678",
+        }),
       }));
 
     const response = await facade.find({id: "123ABC"});
@@ -61,7 +82,6 @@ describe("Client-Adm Facade Test", () => {
     expect(response.id).toEqual("123ABC");
     expect(response.name).toEqual("Test Client Name");
     expect(response.email).toEqual("test@mail.com");
-    expect(response.address).toEqual("Test Address");
     expect(response.createdAt).toBeDefined();
     expect(response.updatedAt).toBeDefined();
   });

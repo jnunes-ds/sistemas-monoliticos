@@ -1,5 +1,5 @@
-import Product from "../../domain/product.entity";
-import Id from "../../../@shared/domain/value-object/id.value-object";
+import Product from "@product-adm/domain/product.entity";
+import Id from "@shared/domain/value-object/id.value-object";
 import CheckStockUsecase from "./check-stock.usecase";
 
 const product = new Product({
@@ -20,12 +20,12 @@ describe("Check Stock UseCase - Unit Test", () => {
     const productRepository = MockRepository();
     const checkStockUseCase = new CheckStockUsecase(productRepository);
 
-    const input = {productId: product.id};
+    const input = {productId: product.id.id};
 
     const result =  await checkStockUseCase.execute(input);
 
     expect(productRepository.find).toHaveBeenCalled();
-    expect(result.productId).toEqual(product.id);
+    expect(result.productId).toEqual(product.id.id);
     expect(result.stock).toEqual(product.stock);
   });
 });

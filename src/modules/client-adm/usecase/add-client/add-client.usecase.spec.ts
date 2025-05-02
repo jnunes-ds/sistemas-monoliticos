@@ -13,7 +13,15 @@ describe("Add Client Use Case Unit Test", () => {
     const input = {
       name: "John Doe",
       email: "jhondoe@mail.com",
-      address: "123 Main St",
+      document: "123456789",
+      address: {
+        street: "123 Main St",
+        number: "456",
+        complement: "123456789",
+        city: "Anytown",
+        state: "CA",
+        zipCode: "12345",
+      },
     }
 
     const result = await addClientUseCase.execute(input);
@@ -22,6 +30,10 @@ describe("Add Client Use Case Unit Test", () => {
     expect(result.id).toBeDefined();
     expect(result.name).toEqual("John Doe");
     expect(result.email).toEqual("jhondoe@mail.com");
-    expect(result.address).toEqual("123 Main St");
+    expect(result.address.street).toEqual("123 Main St");
+    expect(result.address.number).toEqual("456");
+    expect(result.address.city).toEqual("Anytown");
+    expect(result.address.state).toEqual("CA");
+    expect(result.address.zipCode).toEqual("12345");
   })
 });

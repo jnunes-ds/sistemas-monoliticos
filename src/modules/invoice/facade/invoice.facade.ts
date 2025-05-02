@@ -4,7 +4,7 @@ import IInvoiceFacade, {
   OutputGenerateInvoiceFacadeDTO
 } from "./invoice.facade.interface";
 import {Promise} from "ts-toolbelt/out/Any/Promise";
-import UseCaseInterface from "../../@shared/usecase/use-case.interface";
+import UseCaseInterface from "@shared/usecase/use-case.interface";
 
 interface UseCaseProps {
   generateInvoiceUseCase?: UseCaseInterface;

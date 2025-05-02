@@ -1,7 +1,7 @@
-import ProductRepository from "../repository/product.repository";
-import AddProductUseCase from "../usecase/add-product/add-product.usecase";
-import ProductAdmFacade from "../facade/product-adm.facade";
-import CheckStockUsecase from "../usecase/check-stock/check-stock.usecase";
+import ProductRepository from "@product-adm/infrastructure/repository/sequelize/product.repository";
+import AddProductUseCase from "@product-adm/usecase/add-product/add-product.usecase";
+import ProductAdmFacade from "@product-adm/facade/product-adm.facade";
+import CheckStockUsecase from "@product-adm/usecase/check-stock/check-stock.usecase";
 
 export default class ProductAdmFacadeFactory {
   static create() {

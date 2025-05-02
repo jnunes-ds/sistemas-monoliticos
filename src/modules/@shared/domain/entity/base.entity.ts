@@ -1,4 +1,4 @@
-import Id from "../value-object/id.value-object";
+import Id from "@shared/domain/value-object/id.value-object";
 import {v4 as uuid} from "uuid";
 
 export default class BaseEntity {

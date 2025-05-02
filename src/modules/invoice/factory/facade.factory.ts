@@ -1,7 +1,7 @@
-import InvoiceRepository from "../repository/invoice.repository";
-import GenerateInvoiceUsecase from "../usecase/generate-invoice/generate-invoice.usecase";
-import InvoiceFacade from "../facade/invoice.facade";
-import FindInvoiceUsecase from "../usecase/find-invoice/find-invoice.usecase";
+import InvoiceRepository from "@invoice/infrastructure/repository/sequelize/invoice.repository";
+import GenerateInvoiceUsecase from "@invoice/usecase/generate-invoice/generate-invoice.usecase";
+import InvoiceFacade from "@invoice/facade/invoice.facade";
+import FindInvoiceUsecase from "@invoice/usecase/find-invoice/find-invoice.usecase";
 
 export default class InvoiceFacadeFactory {
   static create() {

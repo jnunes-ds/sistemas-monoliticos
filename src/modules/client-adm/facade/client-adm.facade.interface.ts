@@ -1,8 +1,16 @@
 export interface InputAddClientFacadeDTO {
   id?: string;
   name: string;
+  document: string;
   email: string;
-  address: string;
+  address: {
+    street: string;
+    number: string;
+    complement: string;
+    city: string;
+    state: string;
+    zipCode: string;
+  };
 }
 
 export interface InputFindClientFacadeDTO {
@@ -12,8 +20,16 @@ export interface InputFindClientFacadeDTO {
 export interface OutputFindClientFacadeDTO {
   id: string;
   name: string;
+  document: string;
   email: string;
-  address: string;
+  address: {
+    street: string;
+    number: string;
+    complement: string;
+    city: string;
+    state: string;
+    zipCode: string;
+  };
   createdAt: Date;
   updatedAt: Date;
 }

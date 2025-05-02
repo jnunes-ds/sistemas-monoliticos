@@ -1,17 +1,17 @@
-import StoreCatalogFacadeInterface, {
+import IStoreCatalogFacade, {
   InputFindStoreCatalogFacadeDTO,
   OutputFindAllStoreCatalogFacadeDTO, OutputFindStoreCatalogFacadeDTO
 } from "./store-catalog.facade.interface";
 import {Promise} from "ts-toolbelt/out/Any/Promise";
-import FindProductUsecase from "../usecase/find-product/find-product.usecase";
-import FindAllProductsUseCase from "../usecase/find-all-products/find-all-products.usecase";
+import FindProductUsecase from "@store-catalog/usecase/find-product/find-product.usecase";
+import FindAllProductsUseCase from "@store-catalog/usecase/find-all-products/find-all-products.usecase";
 
 export interface UseCaseProps {
   findProductUseCase: FindProductUsecase;
   findAllProductsUseCase: FindAllProductsUseCase;
 }
 
-export default class StoreCatalogFacade implements StoreCatalogFacadeInterface {
+export default class StoreCatalogFacade implements IStoreCatalogFacade {
 
   private _findProductUseCase: FindProductUsecase;
   private _findAllProductsUseCase: FindAllProductsUseCase;

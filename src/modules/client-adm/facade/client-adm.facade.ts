@@ -4,7 +4,7 @@ import IClientAdmFacade, {
   OutputFindClientFacadeDTO
 } from "./client-adm.facade.interface";
 import {Promise} from "ts-toolbelt/out/Any/Promise";
-import UseCaseInterface from "../../@shared/usecase/use-case.interface";
+import UseCaseInterface from "@shared/usecase/use-case.interface";
 
 export interface UseCaseProps {
   findClientUseCase?: UseCaseInterface;
@@ -30,8 +30,16 @@ export default class ClientAdmFacade implements IClientAdmFacade {
     return {
       id: output.id,
       name: output.name,
+      document: output.document,
       email: output.email,
-      address: output.address,
+      address: {
+        street: output.document.street,
+        number: output.document.number,
+        complement: output.document.complement,
+        city: output.document.city,
+        state: output.document.state,
+        zipCode: output.document.zipCode,
+      },
       createdAt: output.createdAt,
       updatedAt: output.updatedAt,
     }

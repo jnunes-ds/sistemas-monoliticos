@@ -1,11 +1,11 @@
 import {Sequelize} from "sequelize-typescript";
-import InvoiceModel from "../repository/models/invoice.model";
-import InvoiceItemModel from "../repository/models/invoice-item.model";
-import Invoice from "../domain/entity/invoice.entity";
-import Address from "../domain/value-object/address.value-object";
-import InvoiceItem from "../domain/entity/invoice-item.entity";
-import Id from "../../@shared/domain/value-object/id.value-object";
-import InvoiceFacadeFactory from "../factory/facade.factory";
+import InvoiceModel from "@invoice/infrastructure/repository/sequelize/models/invoice.model";
+import InvoiceItemModel from "@invoice/infrastructure/repository/sequelize/models/invoice-item.model";
+import Invoice from "@invoice/domain/entity/invoice.entity";
+import Address from "@invoice/domain/value-object/address.value-object";
+import InvoiceItem from "@invoice/domain/entity/invoice-item.entity";
+import Id from "@shared/domain/value-object/id.value-object";
+import InvoiceFacadeFactory from "@invoice/factory/facade.factory";
 
 describe("Invoice Facade Test", () => {
   let sequelize: Sequelize;

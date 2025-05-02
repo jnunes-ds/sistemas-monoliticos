@@ -1,5 +1,5 @@
-import UseCaseInterface from "../../../@shared/usecase/use-case.interface";
-import InvoiceGateway from "../../gateway/invoice.gateway";
+import UseCaseInterface from "@shared/usecase/use-case.interface";
+import InvoiceGateway from "@invoice/gateway/invoice.gateway";
 import {Promise} from "ts-toolbelt/out/Any/Promise";
 import {InputFindInvoiceUseCaseDTO, OutputFindInvoiceUseCaseDTO} from "./find-invoice.dto";
 

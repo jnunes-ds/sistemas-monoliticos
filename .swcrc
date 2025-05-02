@@ -7,9 +7,13 @@
       "dynamicImport": false,
       "baseUrl": "./src", // Define o diretório base para os aliases
       "paths": {
-        "@domain/*": ["./src/domain"],
-        "@infra/*": ["./src/infrastructure"], // Define o alias @ para o diretório src
-        "@usecase/*": ["./src/usecase"]
+        "@shared/*": ["modules/@shared/*"],
+       "@checkout/*": ["modules/checkout/*"],
+       "@client-adm/*": ["modules/client-adm/*"],
+       "@invoice/*": ["modules/invoice/*"],
+       "@payment/*": ["modules/payment/*"],
+       "@product-adm/*": ["modules/product-adm/*"],
+       "@store-catalog/*": ["modules/store-catalog/*"]
       }
     },
     "target": "es2020"
