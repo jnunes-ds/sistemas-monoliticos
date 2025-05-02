@@ -4,7 +4,7 @@ import {InputAddClientDTO} from "@client-adm/usecase/add-client/add-client.dto";
 import {v4 as uuid} from 'uuid';
 
 describe("E2E Tests for Checkout API", () => {
-  beforeEach(async () => {
+  beforeAll(async () => {
     await sequelize.sync({force: true});
   });
 
