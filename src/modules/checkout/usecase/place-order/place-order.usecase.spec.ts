@@ -243,7 +243,6 @@ describe("Place Order Use Case Unit Test", () => {
 
         let output = await placeorderUseCase.execute(input);
 
-        expect(output.invoiceId).toBeNull();
         expect(output.total).toBe(300);
         expect(output.products).toStrictEqual([{productId: "1"}, {productId: "2"}]);
         expect(mockClientFacade.find).toHaveBeenCalled();

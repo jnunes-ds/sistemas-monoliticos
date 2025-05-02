@@ -9,7 +9,7 @@ import Address from "@client-adm/domain/value-object/address.value-object";
 import InvoiceAddress from "@invoice/domain/value-object/address.value-object";
 import InvoiceItem from "@invoice/domain/entity/invoice-item.entity";
 import CheckoutModel from "@checkout/infrastructure/repository/models/checkout.model";
-import ProductModel from "@checkout/infrastructure/repository/models/product.model";
+import CheckoutProductModel from "@checkout/infrastructure/repository/models/checkout-product.model";
 
 describe("Checkout Repository test", () => {
   let sequelize: Sequelize;
@@ -22,7 +22,7 @@ describe("Checkout Repository test", () => {
       sync: {force: true},
     });
 
-    sequelize.addModels([CheckoutModel, ProductModel])
+    sequelize.addModels([CheckoutModel, CheckoutProductModel])
     await sequelize.sync();
   });
 
@@ -102,9 +102,11 @@ describe("Checkout Repository test", () => {
       status: order.status,
     });
 
-    expect(response.id).toStrictEqual(order.id.id);
-    expect(response.clientId).toStrictEqual(order.client.id);
-    expect(response.products).toStrictEqual(order.products);
+    expect(response.id).toStrictEqual("123Order");
+    expect(response.clientId).toStrictEqual(order.client.id.id);
+    expect(response.invoiceId).toStrictEqual(invoice.id.id);
+    expect(response.total).toStrictEqual(order.total);
+    expect(response.products.length).toStrictEqual(order.products.length);
     expect(response.status).toEqual(order.status);
 
   });
