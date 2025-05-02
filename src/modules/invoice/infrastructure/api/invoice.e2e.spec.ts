@@ -39,7 +39,6 @@ describe("E2E Tests for Invoice API", () => {
         name: "Product 2",
         price: 200,
       })],
-      total: 300,
     })
 
     await invoiceRepository.create(invoice);
@@ -49,6 +48,32 @@ describe("E2E Tests for Invoice API", () => {
       .get(`/api/v1/invoices/${invoice.id.id}`);
 
     expect(response.status).toBe(200);
-    expect(true).toBe(true);
+    expect(response.body).toEqual({
+      id: invoice.id.id,
+      name: invoice.name,
+      document: invoice.document,
+      address: {
+        street: invoice.address.street,
+        number: invoice.address.number,
+        complement: invoice.address.complement,
+        city: invoice.address.city,
+        state: invoice.address.state,
+        zipCode: invoice.address.zipCode,
+      },
+      items: [
+        {
+          id: invoice.items[0].id.id,
+          name: invoice.items[0].name,
+          price: invoice.items[0].price,
+        },
+        {
+          id: invoice.items[1].id.id,
+          name: invoice.items[1].name,
+          price: invoice.items[1].price,
+        },
+      ],
+      total: 300,
+      createdAt: expect.any(String),
+    });
   });
 });
