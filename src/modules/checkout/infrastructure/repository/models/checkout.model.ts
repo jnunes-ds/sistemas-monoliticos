@@ -2,7 +2,7 @@ import {Column, ForeignKey, HasMany, Model, PrimaryKey, Table} from "sequelize-t
 import {NUMBER, STRING} from "sequelize";
 import ClientModel from "@client-adm/infrastructure/repository/sequelize/client.model";
 import InvoiceModel from "@invoice/infrastructure/repository/sequelize/models/invoice.model";
-import ProductModel from "@checkout/infrastructure/repository/models/product.model";
+import CheckoutProductModel from "@checkout/infrastructure/repository/models/checkout-product.model";
 
 @Table({
   tableName: "checkout",
@@ -27,6 +27,6 @@ export default class CheckoutModel extends Model {
   @Column({type: NUMBER, allowNull: false})
   declare total: number;
 
-  @HasMany(() => ProductModel)
-  declare products: ProductModel[];
+  @HasMany(() => CheckoutProductModel)
+  declare products: CheckoutProductModel[];
 }

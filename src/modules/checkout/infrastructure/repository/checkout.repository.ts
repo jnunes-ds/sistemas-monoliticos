@@ -4,7 +4,8 @@ import {
   ICheckoutRepository,
   InputAddOrderRepository, OutputAddOrderRepository, OutputFindOrderRepository
 } from "@checkout/infrastructure/repository/checkout.repository.interface";
-import ProductModel from "@checkout/infrastructure/repository/models/product.model";
+import CheckoutProductModel from "@checkout/infrastructure/repository/models/checkout-product.model";
+import InvoiceModel from "@invoice/infrastructure/repository/sequelize/models/invoice.model";
 
 export default class CheckoutRepository implements ICheckoutRepository {
   async addOrder(input: InputAddOrderRepository): Promise<OutputAddOrderRepository> {
@@ -20,7 +21,7 @@ export default class CheckoutRepository implements ICheckoutRepository {
       })),
       total: input.total,
     }, {
-      include: [ProductModel],
+      include: [CheckoutProductModel],
     });
 
     if (!persistCheckout) {

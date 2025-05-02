@@ -2,8 +2,11 @@ import express from "express";
 import AddClientUsecase from "@client-adm/usecase/add-client/add-client.usecase";
 import ClientRepository from "@client-adm/infrastructure/repository/sequelize/ClientRepository";
 import {InputAddClientDTO} from "@client-adm/usecase/add-client/add-client.dto";
+import ClientModel from "@client-adm/infrastructure/repository/sequelize/client.model";
 
 export const clientAdmRoute = express.Router();
+
+export const clientAdmModules = [ClientModel];
 
 clientAdmRoute.post("/", async (req, res) => {
   const usecase = new AddClientUsecase(new ClientRepository());

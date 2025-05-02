@@ -7,7 +7,6 @@ import Address from "@client-adm/domain/value-object/address.value-object";
 
 export default class ClientRepository implements ClientGateway {
   async add(clientData: Client): Promise<void> {
-    console.log(clientData.address.city);
     await ClientModel.create({
       id: clientData.id.id,
       name: clientData.name,

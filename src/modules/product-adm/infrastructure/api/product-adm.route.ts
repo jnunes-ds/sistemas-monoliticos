@@ -1,8 +1,11 @@
 import express from "express";
 import AddProductUseCase from "@product-adm/usecase/add-product/add-product.usecase";
 import ProductRepository from "@product-adm/infrastructure/repository/sequelize/product.repository";
+import ProductModel from "@product-adm/infrastructure/repository/sequelize/product.model";
 
 export const productAdmRoute = express.Router();
+
+export const productAdmModules = [ProductModel];
 
 productAdmRoute.post("/", async (req, res) => {
   const usecase = new AddProductUseCase(new ProductRepository());
@@ -19,7 +22,7 @@ productAdmRoute.post("/", async (req, res) => {
 
     res.status(200).json(output);
   } catch (error) {
-    console.log(error);
+    console.error(error);
     res.status(500).json(error);
   }
 })

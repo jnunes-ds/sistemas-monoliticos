@@ -11,6 +11,7 @@ import IInvoiceFacade from "@invoice/facade/invoice.facade.interface";
 import IPaymentFacade from "@payment/facade/facade.interface";
 import CheckoutGateway from "@checkout/gateway/checkout.gateway";
 import Address from "@client-adm/domain/value-object/address.value-object";
+import {InputAddOrderRepository} from "@checkout/infrastructure/repository/checkout.repository.interface";
 
 
 export default class PlaceOrderUsecase implements UseCaseInterface {
@@ -53,6 +54,7 @@ export default class PlaceOrderUsecase implements UseCaseInterface {
       orderId: order.id.id,
       amount: order.total,
     });
+    payment.status === "approved" && order.approve();
 
     const invoice =
       payment.status === "approved"
@@ -73,15 +75,18 @@ export default class PlaceOrderUsecase implements UseCaseInterface {
           })
         : null;
 
-    payment.status === "approved" && order.approve();
     this._repository.addOrder({
-      clientId: order.client.id.id,
+      id: order.id.id,
+      clientId: client.id,
+      invoiceId: payment.status === "approved" ? invoice.id : null,
+      status: order.status,
+      total: order.total,
       products: order.products.map((product) => ({
         productId: product.id.id,
         name: product.name,
         price: product.salesPrice,
       })),
-    });
+    } satisfies InputAddOrderRepository);
 
 
     return {

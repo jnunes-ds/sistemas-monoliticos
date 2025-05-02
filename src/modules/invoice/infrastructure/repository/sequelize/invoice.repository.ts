@@ -8,6 +8,9 @@ import InvoiceItem from "@invoice/domain/entity/invoice-item.entity";
 
 export default class InvoiceRepository implements InvoiceGateway {
   async create(input: Invoice): Promise<void> {
+    if (!input.address.street) {
+      return;
+    }
     await InvoiceModel.create({
       id: input.id.id,
       name: input.name,
