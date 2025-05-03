@@ -1,8 +1,11 @@
-import {InputPlaceOrderDTO, OutputPlaceOrderDTO} from "@checkout/usecase/place-order/place-order.dto";
+import {
+  InputAddOrderRepository,
+  OutputAddOrderRepository, OutputFindOrderRepository
+} from "@checkout/infrastructure/repository/checkout.repository.interface";
 
 
 
 export default interface CheckoutGateway {
-  addOrder(input: InputPlaceOrderDTO): Promise<OutputPlaceOrderDTO>;
-  findOrder(input: {id: string}): Promise<OutputPlaceOrderDTO>;
+  addOrder(input: InputAddOrderRepository): Promise<OutputAddOrderRepository>;
+  findOrder(input: {id: string}): Promise<OutputFindOrderRepository>;
 }

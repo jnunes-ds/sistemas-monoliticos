@@ -2,11 +2,10 @@ import {Sequelize} from "sequelize-typescript";
 import InvoiceModel from "./models/invoice.model";
 import InvoiceItemModel from "./models/invoice-item.model";
 import InvoiceRepository from "./invoice.repository";
-import Invoice from "@invoice/domain/entity/invoice.entity";
-import Id from "@shared/domain/value-object/id.value-object";
-import Address from "@invoice/domain/value-object/address.value-object";
 import InvoiceItem from "@invoice/domain/entity/invoice-item.entity";
-
+import Id from "@shared/domain/value-object/id.value-object";
+import Invoice from "@invoice/domain/entity/invoice.entity";
+import Address from "@invoice/domain/value-object/address.value-object";
 describe("Invoice Repository Test", () => {
   let sequelize: Sequelize;
   beforeEach(async () => {
@@ -55,7 +54,7 @@ describe("Invoice Repository Test", () => {
     const item1 = new InvoiceItem({id: new Id("1"), name: "Item 1", price: 100});
     const item2 = new InvoiceItem({id: new Id("2"), name: "Item 2", price: 200});
 
-    const invoice = new Invoice({
+    const invoice: Invoice = new Invoice({
       id: new Id("123Abc"),
       name: "Invoice 1",
       document: "123456789",
@@ -76,7 +75,7 @@ describe("Invoice Repository Test", () => {
       zipCode: invoice.address.zipCode,
       createdAt: new Date(),
       updatedAt: new Date(),
-      items: invoice.items.map((item) => ({
+      items: invoice.items.map((item: InvoiceItem) => ({
         id: item.id.id,
         invoiceId: invoice.id.id,
         name: item.name,
