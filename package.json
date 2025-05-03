@@ -7,7 +7,7 @@
   "scripts": {
     "build": "rm -rf dist && npx swc src -d temp && mv temp/src dist/ && rm -rf temp",
     "start": "node index.js",
-    "dev": "nodemon src/infrastructure/api/server.ts",
+    "dev": "nodemon -r tsconfig-paths/register src/modules/@shared/infrastructure/api/server.ts",
     "test": "pnpm run tsc --noEmit && jest ./src",
     "tsc": "tsc"
   },
@@ -33,6 +33,7 @@
     "supertest": "^7.1.0",
     "swc-plugin-add-import-extension": "1.0.0-alpha.1",
     "ts-node": "^10.9.2",
+    "tsconfig-paths": "^4.2.0",
     "typescript": "^5.7.3"
   },
   "dependencies": {

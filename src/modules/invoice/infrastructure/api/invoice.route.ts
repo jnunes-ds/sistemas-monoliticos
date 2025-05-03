@@ -3,15 +3,16 @@ import FindInvoiceUsecase from "@invoice/usecase/find-invoice/find-invoice.useca
 import InvoiceRepository from "@invoice/infrastructure/repository/sequelize/invoice.repository";
 import InvoiceModel from "@invoice/infrastructure/repository/sequelize/models/invoice.model";
 import InvoiceItemModel from "@invoice/infrastructure/repository/sequelize/models/invoice-item.model";
+import {OutputFindInvoiceUseCaseDTO} from "@invoice/usecase/find-invoice/find-invoice.dto";
 
 export const invoiceRoute = express.Router();
 
 export const invoiceModules = [InvoiceModel, InvoiceItemModel];
 
 type Req = Request<{invoiceId: string}>
-type Res =  Response<{invoiceId: string} | {error: string}>;
+type Res =  Response<OutputFindInvoiceUseCaseDTO | {error: Error}>;
 
-invoiceRoute.get("/:invoiceId", async (req: Req, res: Res): Promise<void> => {
+invoiceRoute.get("/:invoiceId", async (req: Req, res: Res) => {
   try {
     const {invoiceId} = req.params;
 
@@ -41,7 +42,8 @@ invoiceRoute.get("/:invoiceId", async (req: Req, res: Res): Promise<void> => {
       createdAt: response.createdAt,
     });
   } catch (error) {
+    const e: Error = error as Error;
     console.error("Error fetching invoice:", error);
-    res.status(500).json({ error });
+    res.status(500).json({error: e});
   }
 });
