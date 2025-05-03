@@ -37,8 +37,6 @@ describe("Invoice Repository Test", () => {
     })
     const invoiceRepository = new InvoiceRepository();
 
-
-    console.log("xablau", JSON.stringify(invoice, null, 2));
     await invoiceRepository.create(invoice);
 
     const foundInvoice = await InvoiceModel.findOne({ where: { id: invoice.id.id } });
