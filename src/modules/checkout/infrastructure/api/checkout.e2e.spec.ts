@@ -9,6 +9,7 @@ describe("E2E Tests for Checkout API", () => {
   });
 
   afterAll(async () => {
+    await new Promise((resolve) => setTimeout(resolve, 1000));
     await sequelize.close();
   });
 
@@ -33,25 +34,27 @@ describe("E2E Tests for Checkout API", () => {
     const productId1 = uuid();
     const productId2 = uuid();
 
-    await request(app)
-      .post("/api/v1/products")
-      .send({
-        id: productId1,
-        name: "Product 1",
-        description: "Product 1 description",
-        purchasePrice: 100,
-        stock: 10,
-      });
+    await Promise.all([
+      request(app)
+        .post("/api/v1/products")
+        .send({
+          id: productId1,
+          name: "Product 1",
+          description: "Product 1 description",
+          purchasePrice: 100,
+          stock: 10,
+        }),
 
-    await request(app)
-      .post("/api/v1/products")
-      .send({
-        id: productId2,
-        name: "Product 2",
-        description: "Product 2 description",
-        purchasePrice: 200,
-        stock: 20,
-      });
+      request(app)
+        .post("/api/v1/products")
+        .send({
+          id: productId2,
+          name: "Product 2",
+          description: "Product 2 description",
+          purchasePrice: 200,
+          stock: 20,
+        })
+    ])
 
     const response = await request(app)
       .post("/api/v1/checkout")
